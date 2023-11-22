@@ -1,0 +1,12 @@
+1 . create showMessages function in laravel DDDone
+
+2 . create component to showMessages in react DDDone without design
+
+3 . create this component with input to send messages Done without design
+
+4 . connect showMessages function and sendMessage function
+	in laravel with react showMessage Component  Done 
+
+5 . create a page for the doctor to open chat with doctor from it . 
+
+6 . make the page refresh dynamic when new message sent .... continue tommorow . 

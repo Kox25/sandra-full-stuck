@@ -1,0 +1,24 @@
+.Carousel {
+  margin: 0 15%;
+  border-radius: 10px;
+  height: 20%;  
+
+
+}
+.Carousel img {
+  border-radius: 20px;
+  aspect-ratio: 2/1;
+}
+.Carousel .SliderCaption{
+  display: grid;
+  align-items: center;
+}
+.Carousel .SliderCaption .text{
+  color: white;
+
+  padding: 0.8% 1.5%;
+  border-radius: 6px;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.348);
+  width:fit-content;
+}

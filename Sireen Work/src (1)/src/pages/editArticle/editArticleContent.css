@@ -1,0 +1,48 @@
+.editArticleContent{
+    margin-top: 15vmin ;
+  height:auto;
+
+  
+}
+@media screen and (max-width: 600px) {
+.editArticleContent {
+  margin-top: 20%;
+}}
+.editArticleContent .contentPart{
+    background-color: white;
+    margin: 0vmin 10vmin;
+    margin-bottom: 6vmin;
+    border-radius: 20px;
+    padding: 5vmin 5vmin 5vmin 5vmin;
+}
+.editArticleContent .title{
+    font-size: 3.5vmin;
+    font-weight: 500;
+    margin-bottom: 2vmin;
+    
+}
+.editArticleContent .content{
+    background-color: rgb(245, 245, 245);
+    min-height: 48vmin;
+    border-radius: 20px;
+    padding:4vmin 5vmin;
+    border: none;
+    width: 100%;
+    align-items: start;
+}
+
+.editArticleContent .buttons{
+    justify-content: center;
+    display: flex;
+}
+.editArticleContent button{
+    font-weight: 500;
+       padding: 1vmin 2vmin;
+       margin: 5vmin 2.5vmin 0vmin 2.5vmin;
+       background-color: rgba(237, 215, 250, 0.663);
+       border: 1px solid rgb(49, 49, 49);
+       border-radius: 6px;
+       color: black;
+       font-size: 2.3vmin;
+
+}

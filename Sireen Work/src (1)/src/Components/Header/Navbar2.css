@@ -1,0 +1,16 @@
+.Nav
+{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 4px ;
+}
+.Nav .logoImage 
+{
+    border-radius: 5px ;
+}
+
+.Nav .userInfo
+{
+    display: flex;
+}

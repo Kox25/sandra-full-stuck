@@ -1,0 +1,123 @@
+.blog {
+  margin: 50px 0;
+}
+.blog .boxItems {
+  margin: 5% 8%;
+  border-radius: 10px;
+  background-color:white;
+  transition: 0.5s;}
+.blog .boxItems:hover {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+
+.blog p {
+  color: white;
+}
+.blog .details {
+  padding: 0 7% 5% 8%;
+}
+.blog .grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.blog .container {
+  max-width: 95%;
+  margin: auto;
+}
+.blog img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.blog .icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+.blog .tag a {
+  color: rgb(0, 0, 0);
+  opacity: 0.7;
+}
+.blog .tag {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.blog h3 {
+  font-weight: 500;
+}
+.blog p {
+  color: #000000;
+  font-weight: 400;
+  margin: 20px 0;
+  font-size: 17px;
+  line-height: 25px;
+}
+.blog .date {
+  display: flex;
+  align-items: center;
+
+}
+.blog .date label {
+  display: block;
+  margin-right: auto;
+}
+@media screen and (max-width: 768px) {
+  .blog .grid3,
+  .blog .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.blog .ButtonContainer{
+  height: 200px;
+  display: grid;
+}
+
+.blog .ButtonContainer .LoadMoreButton{ 
+  color: rgb(49, 49, 49);
+  border: 1px solid rgb(49, 49, 49);
+  margin: auto;
+width: 10%;
+height: 20%;
+font-size: 2.3vmin;
+vertical-align: middle;
+
+background-color:rgba(244, 227, 255, 0.892) ;
+}
+
+.blog .ButtonContainer .LoadMoreButton:hover{ 
+  color: rgb(39, 39, 39);
+  border: 1px solid rgb(39, 39, 39);
+width: 11%;
+height: 22%;
+font-weight:500;
+
+background-color:rgba(237, 213, 254, 0.892) ;
+
+}
+.blog .DoctorName{
+  
+  text-decoration: none;
+  font-weight: 500;
+}
+.blog .userIcon{  
+  display: flex;
+  flex-direction: row;
+  height:5.5vmin;
+  margin-bottom: 2vmin;
+}
+.blog .userIcon img{
+  height: 5.5vmin;
+  width: 5.5vmin;
+
+}
+.blog .userIcon a{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 1.5vmin;
+  text-decoration: none;
+  font-weight: 600;
+}

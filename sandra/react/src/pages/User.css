@@ -1,0 +1,45 @@
+.car
+{
+    background-color: #ffffffd5;
+    cursor: pointer;
+}
+
+.car:hover
+{
+    background-color:#198a5d9b ;
+    color: #ffffffd5;
+}
+
+.doctor
+{
+    background-color: #5758BB;
+    border: #5758BB;
+}
+
+.profile
+{
+    background-color: #5758BB;
+    border: #5758BB;
+}
+
+
+.best
+{
+    font-size: large;
+    color: black;
+    font-weight: 800;
+}
+
+.doctor:hover
+{
+    background-color: #9980FA;
+    height: 30%;
+    width: 50%;
+    font-size: x-large;    
+}
+
+.profile:hover
+{
+    background-color: #9980FA;
+}
+

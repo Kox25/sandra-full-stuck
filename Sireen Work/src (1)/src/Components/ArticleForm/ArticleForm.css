@@ -1,0 +1,186 @@
+
+
+
+.FormCol{
+    position: fixed;
+    text-align: center;
+    right: 8vmin;
+    padding-top: auto;
+    color: #eee;
+    
+}
+.FormCol .title{
+  margin-bottom: 5vmin;
+}
+
+.FormCol .articleForm{
+  margin-top: 2vmin;
+    background-color: rgb(111, 183, 255);
+    width: 47vmin;
+    border-radius: 10px;
+    padding: 6vmin 4vmin;
+}
+.FormCol input,select{
+    width: 100%;
+    margin-bottom: 7vmin;
+    background-color:rgba(255, 255, 255, 0);
+border: none;
+color: white;
+
+border-bottom: 1px solid rgb(255, 255, 255);
+}
+.FormCol input:focus,select:focus{
+    outline: none;
+
+}
+.FormCol select option {
+    background-color: rgb(111, 183, 255); /* Replace with your desired background color */
+    color: #ffffff; /* Replace with your desired text color */
+  }
+
+  .FormCol input::placeholder{
+color: white;
+}
+
+  
+.FormCol option:checked{
+    background-color: #ffffff;
+    color: rgb(111, 183, 255);
+}
+.FormCol select::backdrop {
+    background-color: #f0f0f0; /* Replace with your desired background color */
+    color: #333; /* Replace with your desired text color */
+  }
+  .FormCol button{
+    color: rgb(31, 143, 255);
+ font-size: 3vmin;
+ font-weight: 500;
+    width: 100%;
+    height: 6vmin;
+    border-radius: 10px;
+    border: none;
+    padding: 0 auto;
+}
+.FormCol .contentPart{
+    color: white;
+    display: flex;
+}
+
+.FormCol .contentPart input{
+    width: 75%;
+    margin-left: auto;
+    color: white;
+
+    
+}
+
+.FormCol .contentbutton::-webkit-file-upload-button {
+    visibility: hidden;
+    display: none;
+  }
+  .FormCol  .contentbutton::before {
+    content: 'Select text file';
+    display: inline-block;
+    background: white;
+    color:rgb(31, 143, 255);
+    padding: 5px;
+    border:none;
+    border-radius: 5px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 2vmin;
+    margin-right: 5px;
+  }
+ 
+  .FormCol .contentbutton:active::before {
+    background: rgb(255, 255, 255);
+  }
+  
+.FormCol .editcontentPart{
+  color: white;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5vmin;
+}
+
+
+
+.FormCol  .editContentButton {
+  background: rgba(255, 255, 255, 0);
+  color:rgb(255, 255, 255) ;
+  padding: 5px;
+  border:none;
+  border-radius: 5px;
+  outline: none;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 2vmin;
+  width: 13vmin;
+  height: 5vmin;
+  margin-left: 1.5rem;
+  text-decoration: underline ;
+
+}
+  .FormCol .imagePart{
+    color: white;
+    display: flex;
+    margin-bottom: 5vmin;
+    align-items: center;
+}
+
+.FormCol .imagePart input{
+ 
+display: none;
+}
+
+  .FormCol  .imageButton{
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px dotted rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+    font-size: small;
+    margin-left: 1.5rem;
+  }
+ 
+  .FormCol .imageButton:active::before {
+    background: rgb(255, 255, 255);
+  }
+  .FormCol .imagePart img {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px dotted rgb(255, 255, 255);
+    border-radius: 10px;
+    width: 4rem;
+    aspect-ratio: 1;
+    cursor: pointer;
+    font-size: small;
+  }
+
+  .FormCol .submitPart{
+  display: flex;
+  }
+  .FormCol .submitPart button{
+    font-weight: 500;
+    padding: 1vmin 2vmin;
+    margin: 5vmin 2.5vmin 0vmin 2.5vmin;
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    color: rgb(31, 143, 255);
+    font-size: 2.3vmin;
+    font-weight: 600;
+ }
+
+ 
