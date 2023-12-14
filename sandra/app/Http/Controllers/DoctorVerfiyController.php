@@ -32,10 +32,11 @@ class DoctorVerfiyController extends Controller
         $fileModel->filename = $fileName;
         $fileModel->original_filename = $file->getClientOriginalName();
         $fileModel->doctor_id = $doctorId; // Associate the file with the doctor
-        $fileModel->isVerfiy = 1 ; 
+        $fileModel->isVerfiy = 0 ; 
         $fileModel->save();
 
         // Optionally, you can return a response or redirect to another page
-        return response()->json(['message' => 'File uploaded successfully']);
+        return response()->json(['message' => 'File uploaded successfully'
+        , 'document' => $fileModel]);
     }
 }
