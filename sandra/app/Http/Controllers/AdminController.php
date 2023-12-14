@@ -61,6 +61,9 @@ class AdminController extends Controller
         return response()->json(['doctors' => $doctors]);
     }
 
+
+
+    //this function it will depend on the rate of articles 
     public function deleteDoctor($doctorId)
     {
         $doctor = Doctor::find($doctorId);
@@ -106,6 +109,7 @@ class AdminController extends Controller
 //         'dislike_percentage' => $dislikePercentage,
 //     ]);
 // }
+
 
 
 
