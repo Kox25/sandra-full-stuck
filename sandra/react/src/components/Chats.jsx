@@ -10,7 +10,7 @@ import './Chats.css';
 
 const Chats = () => {
 
-  
+
   const [chats, setChats] = useState([]);
   const [users, setUsers] = useState([]);
   const [chat, setChat] = useState(null);
@@ -77,7 +77,7 @@ const Chats = () => {
   };
 
   return (
-    <div className='pos'>
+    <div className='posforChat'>
       <div className='w-screen flex'>
         {/*just for size screen and figures*/}
         <div className='w-[30%]'>
@@ -120,20 +120,20 @@ const Chats = () => {
                     return (
                       <div className='items-center flex'>
                         <li key={chat.id} className='flex items-center text-bg-secondary my-2 border border-secondary li rounded-full cursor-auto overflow-hidden' onClick={() => handleSelected(chat.chat_id)}>
-                          {user && user.role=== 0 ? (
-                           <img src={avatar} alt='user' height={40} width={40} className='ml-3 border border-primary p-[2px] rounded-full ' />
+                          {user && user.role === 0 ? (
+                            <img src={avatar} alt='user' height={40} width={40} className='ml-3 border border-primary p-[2px] rounded-full ' />
                           ) : (
                             <img src={doctorImg} alt='user' height={40} width={40} className='ml-3 border border-primary p-[2px] rounded-full ' />
                           )}
-                         
+
                           <div className='ml-9 cursor-pointer w-[10%]'>
                             {user && <span className='text-white'>{user.user_name}</span>}
                             <p className='text-sm paragraph'>available</p>
                           </div>
                           {/* Render your chat component here */}
                           <div>
-                          <FontAwesomeIcon icon={faTrash} className="ml-[1700%] trash" onClick={(event) => handleTrashClick(event, chat.chat_id)} />
-                        </div>
+                            <FontAwesomeIcon icon={faTrash} className="ml-[1700%] trash" onClick={(event) => handleTrashClick(event, chat.chat_id)} />
+                          </div>
                         </li>
 
                       </div>

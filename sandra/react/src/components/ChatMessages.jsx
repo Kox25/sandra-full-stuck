@@ -7,29 +7,16 @@ import send from '../assets/send2.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom';
-
+ 
 
 export default function ChatMessages() {
 
-
-
-
-
-
-
-
-
-
+ 
   const [messages, setMessages] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [newMessage, setNewMessage] = useState('');
   const navigate = useNavigate();
-
-
-
-
-
-
+ 
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -96,7 +83,7 @@ export default function ChatMessages() {
 
 
   return (
-    <div className='pos'>
+    <div className='posforMessages'>
 
       <div className='w-screen flex'>
 
@@ -114,12 +101,12 @@ export default function ChatMessages() {
             <div className='items-center justify-center'>
               <h1 className='text-xl text-dark ml-3'>{localStorage.getItem('chatting-with')}</h1>
               {localStorage.getItem('user-type') === 'patient' ?
-                <p className='text-ml ml-3'>Doctor</p>
+                <p className='text-ml text-light ml-3'>Doctor</p>
                 :
                 <p className='text-ml text-light ml-3'>User</p>
               }
             </div>
-            <FontAwesomeIcon icon={faMessage} className='mr-3 ml-auto cursor-pointer' height={20} width={20} onClick={backChats}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faMessage} className='mr-3 ml-auto text-light cursor-pointer' height={20} width={20} onClick={backChats}></FontAwesomeIcon>
           </div>
 
           <div className='h-[60%] w-full mt-1 overflow-y-scroll'>
