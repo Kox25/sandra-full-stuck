@@ -8,6 +8,7 @@ use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\LikeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorVerfiyController; 
 
  
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -82,9 +83,13 @@ Route::post('/add/like/{doctor_id}/{patient_id}', [LikeController::class ,'AddLi
 
 
 
-//this function for the DisLike Controller 
+//this functions for the DisLike Controller 
 //it's work 
 Route::post('/add/dislike/{doctor_id}/{patient_id}' , [DislikeController::class , 'AddDislike']);
 //it's work 
 Route::post('/show/dislike/{doctor_id}', [DislikeController::class ,'showDislikes']);
 
+
+//this funciton for Doctor verfiy controller 
+
+Route::post('/verfiy/{doctor_id}' , [DoctorVerfiyController::class , 'uploadFile']); 

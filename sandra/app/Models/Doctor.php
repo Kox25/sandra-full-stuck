@@ -101,4 +101,10 @@ class Doctor extends Model implements Authenticatable, MustVerifyEmailContract
         return $this->email;
     }
 
+
+    public function file()
+    {
+        return $this->hasOne(DoctorVerfiy::class);
+    }
+
 }
