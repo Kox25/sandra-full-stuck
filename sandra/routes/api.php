@@ -38,8 +38,12 @@ Route::post('/login',[AuthController::class , 'login']);
 Route::post('firstAdmin' , [AdminController::class , 'AddFirstAdmin']);
 //for sireen  
 Route::post('secondAdmin' , [AdminController::class , 'AddSecondAdmin']); 
-
-
+//for accept or reject doctors depend on them documents 
+Route::post('AcceptOrReject/{doctorId}' , [AdminController::class , 'acceptOrRejectDoctor']); 
+//for show all doctor 
+Route::get('show/doctor' , [AdminController::class , 'getAllDoctors']);
+//for delete doctor 
+Route::post('delete/doctor/{doctorId}' , [AdminController::class , 'deleteDoctor']); 
 
 //this section for the ChatController 
 //first function openChat 
@@ -90,6 +94,6 @@ Route::post('/add/dislike/{doctor_id}/{patient_id}' , [DislikeController::class 
 Route::post('/show/dislike/{doctor_id}', [DislikeController::class ,'showDislikes']);
 
 
-//this funciton for Doctor verfiy controller 
-
+//this funcitons for Doctor verfiy controller 
 Route::post('/verfiy/{doctor_id}' , [DoctorVerfiyController::class , 'uploadFile']); 
+

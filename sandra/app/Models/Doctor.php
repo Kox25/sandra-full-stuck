@@ -107,4 +107,9 @@ class Doctor extends Model implements Authenticatable, MustVerifyEmailContract
         return $this->hasOne(DoctorVerfiy::class);
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
 }
