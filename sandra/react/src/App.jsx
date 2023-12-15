@@ -23,7 +23,7 @@ import RouteLayout from './layouts/RouteLayout';
 // component 
 import Chats from './components/Chats';
 import ChatMessages from './components/ChatMessages';
-
+import UploadDocument from './components/UploadDocument'; 
 
 
 const router = createBrowserRouter(
@@ -39,6 +39,7 @@ const router = createBrowserRouter(
             <Route path='/user' element={<User />} />
             <Route path='/chats' element ={<Chats/>} />
             <Route path='/chat/messages' element={<ChatMessages/>}/>
+            <Route path='/upload/document' element={<UploadDocument/>}/>
         </Route>
     )
 )
