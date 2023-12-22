@@ -97,4 +97,12 @@
     }
   }
 
+  .verfiyIcon
+  {
+     background-size: 4em 2em;
+     height: 2em;
+     width: 2em;
+     content:"";
+     display: inline-block;
+  }
   

@@ -2,6 +2,7 @@ import React, { useRef ,useState } from 'react';
 import './UploadDocumet.css';
 import upload from '../assets/upload-file.png';
 import avatar from '../assets/avatar.png';
+import medalia from '../assets/medaliaicon.png'; 
 import axiosClient from '../axios';
  
 
@@ -63,6 +64,7 @@ export default function UploadDocument() {
           <div className='flex'>
             <img className='ml-[-10%]' src={avatar} width={90} alt='Avatar' />
             <p className='ml-3 mt-4'> Note:</p>
+            <img src={medalia} className='verfiyIcon ml-[250px] mt-4'/>
           </div>
           <div className='opacity-90'>
             If you want to make your account more reliable and objective and have a greater chance of reaching more cases and spreading your articles among users, you must verify your account by inserting your certificate here
