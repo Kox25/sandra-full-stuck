@@ -39,7 +39,7 @@ const router = createBrowserRouter(
             <Route path='/user' element={<User />} />
             <Route path='/chats' element ={<Chats/>} />
             <Route path='/chat/messages' element={<ChatMessages/>}/>
-            <Route path='/upload/document' element={<UploadDocument/>}/>
+            <Route path='/verfiy' element={<UploadDocument/>}/>
         </Route>
     )
 )

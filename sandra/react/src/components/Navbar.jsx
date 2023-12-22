@@ -49,6 +49,7 @@ function Navbarr() {
                     <Nav.Link href="#settings">Settings</Nav.Link>
                     <Nav.Link href='/chats'>Chats</Nav.Link>
                     <Nav.Link href="/user">Home</Nav.Link>
+                    <Nav.Link href="/verfiy">verfiy</Nav.Link>
                   </>
                   :
                   <>

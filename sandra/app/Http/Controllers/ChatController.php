@@ -59,9 +59,6 @@ class ChatController extends Controller
     }
 
 
-
-
-
     //here the for show the user what he has of chats 
     public function showChat($id)
     {
@@ -98,8 +95,6 @@ class ChatController extends Controller
             return response()->json(['message' => 'No Chats Available'], 200);
         }
     }
-
-
 
 
 
@@ -170,10 +165,6 @@ class ChatController extends Controller
     }
 
 
-
-
-
-
     //when doctor or patient open the chat i will call this function to show the message if exist 
     public function showMessages(Request $request, $id)
     {
@@ -192,17 +183,6 @@ class ChatController extends Controller
         ]);
     }
 
-
-
-
-
-
-
-
-
-
-
-
     public function GetChatByID($id)
     {
         $chat_id = Chat::where('id', $id)->first();
@@ -216,8 +196,6 @@ class ChatController extends Controller
             );
         }
     }
-
-
 
 
     //this function for delete chat 
@@ -240,12 +218,10 @@ class ChatController extends Controller
     }
 
 
-
     //this funcion for detect if the user active or not 
     public function isActive($id)
     {
         //i solve it in another way .. 
     }
-
 
 }
