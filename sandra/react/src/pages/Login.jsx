@@ -43,12 +43,13 @@ const Login = () => {
       }).then((response) => {
         //this values comes from the AuthController
         JSON.stringify(response)
+        console.log(response); 
         localStorage.setItem('user-info', response.data);
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('user-id', response.data.user_id);
         localStorage.setItem('user-type', response.data.user_type);
         localStorage.setItem('user-name', response.data.user.user_name);
-        console.log(response.data.user.user_name);
+        localStorage.setItem('email' , response.data.user.email); 
         console.log(response.data.user);
         console.log(response.data.token);
         console.log(response.data.user_id);

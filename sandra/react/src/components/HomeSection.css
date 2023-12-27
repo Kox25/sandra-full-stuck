@@ -7,15 +7,6 @@
     display: flex;
 }
 
-.video
-{
-    height: 500px;
-    width: 660px;
-    position: relative;
-    left: 128px;
-    border-radius: 5px;
-}
-
 .content
 {
     border: 1px solid;

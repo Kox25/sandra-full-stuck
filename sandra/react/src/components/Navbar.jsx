@@ -6,6 +6,7 @@ import './Navbar.css';
 import icon from '../assets/usericon.png';
 import { NavDropdown } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import axiosClient from '../axios';
 
 
 
@@ -15,8 +16,20 @@ function Navbarr() {
   const navigate = useNavigate();
 
   function Logout() {
-    localStorage.clear();
-    navigate('/login')
+    const userType = localStorage.getItem('user-type');
+    const userId = localStorage.getItem('user-id');
+  
+    // Make a POST request to the logout API
+    axiosClient.post(`/logout/${userType}/${userId}`)
+      .then(response => {
+        console.log(response.data.message); // Success message from the backend
+        localStorage.clear();
+        navigate('/login');
+      })
+      .catch(error => {
+        console.error(error);
+        // Handle any errors that occur during the API call
+      });
   }
 
   let user = localStorage.getItem('user-name');

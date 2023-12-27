@@ -46,16 +46,17 @@ const Chats = () => {
   const handleSelected = (chatId) => {
     setSelectedChatId(chatId);
     localStorage.setItem('selected-chat-id', chatId);
-
+  
     // Find the user associated with the selected chat
     const selectedChat = chats.find((chat) => chat.chat_id === chatId);
     const user = users.find((user) => user.id === selectedChat.patient_id || user.id === selectedChat.doctor_id);
-
-    // Store the user_name in localStorage
+  
+    // Store the user_name and user_type in localStorage
     if (user) {
       localStorage.setItem('chatting-with', user.user_name);
+      localStorage.setItem('chatting-with-type', user.role === 0 ? 'patient' : 'doctor');
     }
-
+  
     navigate('/chat/messages');
   };
 
@@ -128,7 +129,11 @@ const Chats = () => {
 
                           <div className='ml-9 cursor-pointer w-[10%]'>
                             {user && <span className='text-white'>{user.user_name}</span>}
-                            <p className='text-sm paragraph'>available</p>
+                            {user.available == 1?
+                              <p className='text-sm paragraph'>online</p>
+                              :
+                              <p className='text-sm paragraph'>offline</p>
+                            }
                           </div>
                           {/* Render your chat component here */}
                           <div>

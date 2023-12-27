@@ -7,6 +7,7 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import medalia from '../assets/medaliaicon.png';
 import axiosClient from '../axios';
 import love from '../assets/hand.png'
+import Swal from 'sweetalert2';
 
 export default function Doctor() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function Doctor() {
   const [visibleDoctors, setVisibleDoctors] = useState(8);
   const [likes, setLikes] = useState([]);
   const [likedDoctors, setLikedDoctors] = useState([]);
+
 
   useEffect(() => {
     if (!localStorage.getItem('user-info')) {
@@ -24,6 +26,15 @@ export default function Doctor() {
   }, [navigate]);
 
 
+  const handleError = () => {
+    Swal.fire(
+      {
+        'title': "OPPS...",
+        'icon': "error",
+        'text': "Something went wrong",
+      }
+    );
+  }
 
 
 
@@ -88,11 +99,11 @@ export default function Doctor() {
 
 
 
-  //section here for open chat with doctor 
   const openChatWithDoctor = async (doctorId) => {
     try {
       const userId = localStorage.getItem('user-id');
-      const response = await axiosClient.post(`/open-chat/${userId}/${doctorId}`);
+      const userType = localStorage.getItem('user-type'); // Add this line to get the user type
+      const response = await axiosClient.post(`/open-chat/${userType}/${userId}/${doctorId}`); // Include the user type in the API call
       const data = response.data;
       // Handle the response data as needed
       console.log(data);
@@ -102,8 +113,6 @@ export default function Doctor() {
       console.error('Error opening chat:', error);
     }
   };
-
-
   // here section for load more doctor 
   const loadMoreDoctors = () => {
     setVisibleDoctors((prevVisibleDoctors) => prevVisibleDoctors + 5);
@@ -120,7 +129,7 @@ export default function Doctor() {
             {doctors.slice(0, visibleDoctors).map((doctor) => (
               <div key={doctor.id} className='w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 h-3/5 px-4 pl-1'>
                 <div className='flex flex-col rounded-xl mt-4 cards p-2'>
-                  {/* Image section */} 
+                  {/* Image section */}
                   <div className='flex justify-content-between'>
                     <img
                       className='object-fit-cover rounded-full border border-secondary border-3 border-info-subtle'
@@ -129,9 +138,14 @@ export default function Doctor() {
                       height='90'
                       width='90'
                     />
-                    <img className='medalia'
-                      src={medalia}
-                    />
+                    {doctor.isVerfiy == 1 ?
+                      <img className='medalia'
+                        src={medalia}
+                      />
+                      :
+                      ""
+                    }
+
                   </div>
                   {/* Doctor Information */}
                   <div className='p-2 doctorInfo'>
@@ -166,7 +180,7 @@ export default function Doctor() {
                         </div>
                       ) : (
                         <div className='text-warning flex' >
-                          <img src={love} height='40' width='40' className='pl-2'/>
+                          <img src={love} height='40' width='40' className='pl-2' />
                           <span className='pl-2 text-warning'>{likes[doctor.id] || 0}</span>
                         </div>
                       )}

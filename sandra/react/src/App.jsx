@@ -24,12 +24,14 @@ import RouteLayout from './layouts/RouteLayout';
 import Chats from './components/Chats';
 import ChatMessages from './components/ChatMessages';
 import UploadDocument from './components/UploadDocument'; 
+import AdminDoctors from './components/AdminDoctors';
+import RequestVerfiy from './components/RequestVerfiy';
 
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<RouteLayout />}>
-            <Route index element={<Home />} />
+            <Route index element={<User />} />
             <Route path="/home" element={<Home />}/>
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
@@ -40,6 +42,8 @@ const router = createBrowserRouter(
             <Route path='/chats' element ={<Chats/>} />
             <Route path='/chat/messages' element={<ChatMessages/>}/>
             <Route path='/verfiy' element={<UploadDocument/>}/>
+            <Route path='/control/doctors' element={<AdminDoctors/>}/>
+            <Route path='/request/verfiy' element={<RequestVerfiy/>}/>
         </Route>
     )
 )

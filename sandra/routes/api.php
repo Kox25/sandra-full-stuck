@@ -29,7 +29,8 @@ Route::get('/verify-email/{token}',
 ->name('verify.email');
 //it's work 
 Route::post('/login',[AuthController::class , 'login']); 
-
+//it's work 
+Route::post('/logout/{type}/{id}', [AuthController::class , 'logout']); 
 
 
 //this section for the admin 
@@ -39,16 +40,25 @@ Route::post('firstAdmin' , [AdminController::class , 'AddFirstAdmin']);
 //for sireen  
 Route::post('secondAdmin' , [AdminController::class , 'AddSecondAdmin']); 
 //for accept or reject doctors depend on them documents 
-Route::post('AcceptOrReject/{doctorId}' , [AdminController::class , 'acceptOrRejectDoctor']); 
+Route::post('/AcceptOrReject/{doctorId}' , [AdminController::class , 'acceptOrRejectDoctor']); 
 //for show all doctor 
-Route::get('show/doctor' , [AdminController::class , 'getAllDoctors']);
+Route::get('/show/doctor' , [AdminController::class , 'getAllDoctors']);
 //for delete doctor 
-Route::post('delete/doctor/{doctorId}' , [AdminController::class , 'deleteDoctor']); 
+Route::delete('/delete/doctor/{doctorId}', [AdminController::class, 'deleteDoctor']);
+//for show admin information 
+Route::post('/show/admin/info/{id}' , [AdminController::class , 'getAdminById']); 
+//for get document and doctor info 
+Route::get('/admin/file-info', [AdminController::class, 'getFileAndDoctorInfo']);
+//for get images 
+Route::get('/get/images' , [AdminController::class , 'getImages']); 
+
+
+
 
 //this section for the ChatController 
 //first function openChat 
 //it's work
-Route::post('/open-chat/{patient_id}/{doctor_id}' , [ChatController::class , 'openChat']);
+Route::post('/open-chat/{user_type}/{user_id}/{other_user_id}' , [ChatController::class , 'openChat']);
 //second function sendMessage
 //it's work  
 Route::post('/send-message/{sender_id}/{receiver_id}', [ChatController::class, 'sendMessage']);
@@ -68,11 +78,14 @@ Route::post('/delete-chat/{id}/{user_id}' , [ChatController::class , 'deleteChat
 
 
 
+
 //this section for doctor controller
 // it's work
 Route::post('/add/secertarie',[DoctorController::class , 'addSecertarie']); 
 // it's work 
 Route::get('/get/doctors' , [DoctorController::class ,'getAllDoctor']);
+
+
 
 
 
@@ -87,6 +100,8 @@ Route::post('/add/like/{doctor_id}/{patient_id}', [LikeController::class ,'AddLi
 
 
 
+
+
 //this functions for the DisLike Controller 
 //it's work 
 Route::post('/add/dislike/{doctor_id}/{patient_id}' , [DislikeController::class , 'AddDislike']);
@@ -94,6 +109,12 @@ Route::post('/add/dislike/{doctor_id}/{patient_id}' , [DislikeController::class 
 Route::post('/show/dislike/{doctor_id}', [DislikeController::class ,'showDislikes']);
 
 
+
+
+
 //this funcitons for Doctor verfiy controller 
 Route::post('/verfiy/{doctor_id}' , [DoctorVerfiyController::class , 'uploadFile']); 
 
+
+//this section for DoctorController 
+Route::post('/isVerfiy/{id}', [DoctorController::class , 'isVerfiyDoctor']);

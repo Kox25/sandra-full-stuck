@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddSecertarie;
 use App\Models\Doctor;
+use App\Models\DoctorVerfiy;
 use App\Models\Like;
 use App\Models\Secertarie;
 use Illuminate\Http\Request;
@@ -40,14 +41,26 @@ class DoctorController extends Controller
     }
 
 
+
+
+    //this function for detect if this doctor is verfiy or not 
+    public function isVerfiyDoctor($id)
+    {
+        $isVerfiy = DoctorVerfiy::select('isVerfiy')->where('doctor_id' , $id)->get(); 
+        return response()->json(
+            [
+                'isVerfiy' => $isVerfiy, 
+                'message' => 'the data fetching successfully' , 
+            ]
+        );
+    }
+
     //this fucntion for get all doctors 
     public function getAllDoctor()
     {
         $doctor = Doctor::orderBy('created_at', 'desc')->get();
         return response([
-            'doctors' => $doctor
-            ,
-            'message' => 'Fetch all doctor successfully '
+            'doctors' => $doctor, 
         ]);
 
     }

@@ -1,16 +1,17 @@
-import React, { useRef ,useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './UploadDocumet.css';
 import upload from '../assets/upload-file.png';
 import avatar from '../assets/avatar.png';
-import medalia from '../assets/medaliaicon.png'; 
+import medalia from '../assets/medaliaicon.png';
+import Swal from 'sweetalert2'
 import axiosClient from '../axios';
- 
 
 export default function UploadDocument() {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showSentMessage, setSentMessage] = useState(false);
+  const triggerItem = useRef(null);
 
   const handleClick = () => {
     fileInputRef.current.click();
@@ -19,15 +20,51 @@ export default function UploadDocument() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
-    setShowSuccessMessage(true);
+    //setShowSuccessMessage(true);
+    handleCompleteAlert(); 
     console.log('Selected file:', file.name);
   };
+
+  const handleCancelAlert = () =>
+  {
+    Swal.fire({
+      icon: "warning",
+      title: "Oops...",
+      text: "Try To Upload Another File",
+    });
+  }
 
   const handleCancel = () => {
     setSelectedFile(null);
     setShowSuccessMessage(false);
+    handleCancelAlert();
     fileInputRef.current.value = null;
   };
+
+  const handleErrorAlert = () => {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Something went wrong!"
+    });
+  }
+
+  const handleCompleteAlert = () => {
+    Swal.fire({
+      title: "Good Job!",
+      text: "To complete uploading press on submit",
+      icon: "question",
+    });
+  }
+
+  const handleSuccessAlert = () =>
+  {
+    Swal.fire({
+      title: "Good job!",
+      text: "You Uploaded The File Successfully Wait To Accept it!",
+      icon: "success"
+    });
+  }
 
   const handleSubmit = () => {
     if (selectedFile) {
@@ -38,13 +75,15 @@ export default function UploadDocument() {
         .post(`/verfiy/${doctorId}`, formData)
         .then((response) => {
           console.log('API response:', response.data);
-          setSentMessage(true);
+          handleSuccessAlert();
+          setSentMessage(false);
           setTimeout(() => {
             setSentMessage(false);
           }, 3000);
           resetForm();
         })
         .catch((error) => {
+          handleErrorAlert();
           console.error('API error:', error);
         });
     }
@@ -64,7 +103,7 @@ export default function UploadDocument() {
           <div className='flex'>
             <img className='ml-[-10%]' src={avatar} width={90} alt='Avatar' />
             <p className='ml-3 mt-4'> Note:</p>
-            <img src={medalia} className='verfiyIcon ml-[250px] mt-4'/>
+            <img src={medalia} className='verfiyIcon ml-[250px] mt-4' />
           </div>
           <div className='opacity-90'>
             If you want to make your account more reliable and objective and have a greater chance of reaching more cases and spreading your articles among users, you must verify your account by inserting your certificate here
@@ -118,7 +157,7 @@ export default function UploadDocument() {
           </div>
           {showSuccessMessage && (
             <div className='success-message' style={{ animation: 'fade-in 0.5s forwards' }}>
-              <p>File uploaded successfully!</p>
+              <p>Press Submit Button To complete Verfiy!</p>
             </div>
           )}
           {showSentMessage && (
@@ -126,6 +165,7 @@ export default function UploadDocument() {
               <p>File Sent Successfully!</p>
             </div>
           )}
+
         </div>
         <div className='w-[10%]'></div>
       </div>

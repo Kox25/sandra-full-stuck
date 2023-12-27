@@ -34,7 +34,7 @@ class LikeController extends Controller
     public function AddLike($doctor_id, $patient_id)
     {
         $like = Like::where('doctor_id', $doctor_id)->where('patient_id', $patient_id)->first();
- 
+
         if ($like) {
             // Delete the existing like record
             $like->delete();
@@ -52,14 +52,14 @@ class LikeController extends Controller
 
     //this function for show likes of the doctor .. still in work 
     public function showLikes($doctor_id)
-{
-    $like = Like::where('doctor_id', $doctor_id)->count();
+    {
+        $like = Like::where('doctor_id', $doctor_id)->count();
 
-    if ($like) {
-        return response()->json(['likes' => $like], 200);
-    } else {
-        return response()->json(['likes' => 0 ]);
+        if ($like) {
+            return response()->json(['likes' => $like], 200);
+        } else {
+            return response()->json(['likes' => 0]);
+        }
     }
-}
 
 }

@@ -25,6 +25,8 @@ class Doctor extends Model implements Authenticatable, MustVerifyEmailContract
         'password',
     ];
 
+    protected $appends = ['Document', 'isVerfiy'];
+
     protected $guard = "doctors";
 
     public function Patients(): HasMany
@@ -110,6 +112,33 @@ class Doctor extends Model implements Authenticatable, MustVerifyEmailContract
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function getDocumentAttribute()
+    {
+        $document = DoctorVerfiy::select('filename')
+            ->where('doctor_id', $this->id)
+            ->first();
+
+        if ($document) {
+            $url = stripslashes(asset('storage/app/uploads/' . $document->filename));
+            return $url;
+        }
+
+        return null;
+    }
+
+
+
+    public function getIsVerfiyAttribute()
+    {
+        $doctorVerfiy = DoctorVerfiy::where('doctor_id', $this->id)->first();
+
+        if ($doctorVerfiy) {
+            return $doctorVerfiy->isVerfiy;
+        }
+
+        return false;
     }
 
 }

@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\DoctorVerfiy;
+use Illuminate\Support\Facades\Storage; 
 use App\Models\Doctor;
 
 class AdminController extends Controller
@@ -15,7 +16,7 @@ class AdminController extends Controller
         $Admin = new Admin();
         $Admin->id = 1;
         $Admin->user_name = 'khaled';
-        $Admin->email = 'klora756@gmail.com';
+        $Admin->email = 'kllo1234@gmail.com';
         $Admin->password = Hash::make('klora1234');
         $Admin->save();
         return $Admin;
@@ -41,48 +42,94 @@ class AdminController extends Controller
         $fileModel = DoctorVerfiy::where('doctor_id', $doctorId)->first();
         if (!$fileModel) {
             return response()->json(['message' => 'File not found for the specified doctor'], 404);
-        }
-        if ($action === 'accept') {
-            $fileModel->isVerfiy = 1;
         } else {
-            $fileModel->isVerfiy = 0;
+            if ($action === 'accept') {
+                $fileModel->isVerfiy = 1;
+                $fileModel->save();
+                return response()->json([
+                    'message' => 'Doctor verification complete successfully , status updated successfully'
+                    , 'DocumentInfo' => $fileModel
+                ]);
+            } else {
+                $fileModel->delete();
+                return response()->json([
+                    'message' => 'The request for verfiy rejected',
+                ]);
+            }
         }
-        $fileModel->save();
+
+    }
+
+    public function getFileAndDoctorInfo()
+    {
+        // Retrieve file information where isVerify is 0
+        $fileInfo = DoctorVerfiy::where('isVerfiy', 0)->get();
+
+        // Retrieve doctor information related to the files
+        $doctorIds = $fileInfo->pluck('doctor_id');
+        $doctorInfo = Doctor::whereIn('id', $doctorIds)->get();
+
+        // Get the image URLs based on the file information
+        // $imageUrls = [];
+        // foreach ($fileInfo as $file) {
+        //     $imageUrl = Storage::disk('public')->url('app/uploads/'.$file->filename);
+        //     //$imageUrl = "/app/uploads/"+$file->filename ; 
+        //     $imageUrls[$file->id] = $imageUrl;
+        // }
+        // Return the file, doctor, and image information as JSON response
         return response()->json([
-            'message' => 'Doctor verification status updated successfully'
-            , 'DocumentInfo' => $fileModel
+            // 'files' => $fileInfo,
+            'doctors' => $doctorInfo,
+            // 'imageUrls' => $imageUrls
         ]);
     }
+
 
     public function getAllDoctors()
     {
         $doctors = Doctor::all();
-
         return response()->json(['doctors' => $doctors]);
     }
 
 
+    public function getImages ()
+    {
+        //Retrieve all images from storage 
+        $images = DoctorVerfiy::select('filename')->get(); 
+        return response()->json([
+            'images' => $images ,
+            'message' => 'images fetching successfully',
+        ]);
+    }
 
     //this function it will depend on the rate of articles 
     public function deleteDoctor($doctorId)
     {
         $doctor = Doctor::find($doctorId);
-
         if (!$doctor) {
             return response()->json(['message' => 'Doctor not found'], 404);
         }
 
-        // Delete associated likes first 
+        // Delete associated messages first
+        $chats = $doctor->chats;
+        foreach ($chats as $chat) {
+            $chat->messages()->delete();
+        }
+
+        // Delete associated likes
         $doctor->likes()->delete();
 
-        //then i have to delete the doctor
+        // Delete associated chats
+        $doctor->chats()->delete();
+
+        // Delete the doctor
         $doctor->delete();
 
         return response()->json(['message' => 'Doctor deleted successfully']);
     }
 
 
-// this function will updated from sireen 
+    // this function will updated from sireen 
 
     //     public function calculateArticlePercentage($articleId)
 // {
@@ -111,6 +158,18 @@ class AdminController extends Controller
 // }
 
 
+    public function getAdminById($id)
+    {
+        $admin = Admin::find($id);
+        if (!$admin) {
+            return response()->json(['message' => 'this admin does not exist']);
+        } else {
+            return response()->json([
+                'admininfo' => $admin,
+                'message' => 'Get Information of the admin complete it successfully . '
+            ]);
+        }
+    }
 
 
 

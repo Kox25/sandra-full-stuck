@@ -24,16 +24,23 @@ class AuthController extends Controller
     {
         $data = $request->validated();
 
+        $user = new Patient;
+        $idExists = true;
 
-        $user = Patient::create([
-            'user_name' => $data['user_name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        while ($idExists) {
+            $uniqueId = mt_rand(100000, 999999); // Generate a random ID
+
+            // Check if the generated ID exists in the Doctor model
+            $idExists = Doctor::where('id', $uniqueId)->exists();
+        }
+
+        $user->id = $uniqueId;
+        $user->user_name = $data['user_name'];
+        $user->email = $data['email'];
+        $user->password = bcrypt($data['password']);
+        $user->save();
+
         $token = $user->createToken('token')->plainTextToken;
-
-
-        echo implode(', ', $data) . " " . $token;
 
         return response([
             'user' => $user,
@@ -103,6 +110,8 @@ class AuthController extends Controller
             $passwordHash = $user->password;
             if (Hash::check($request->password, $passwordHash)) {
                 $user_id = $user->id;
+                $user->available = 1; // Update the available attribute to 1
+                $user->save();
                 $token = $user->createToken('token')->plainTextToken;
 
                 return response()->json([
@@ -124,6 +133,8 @@ class AuthController extends Controller
             if ($user->email_verified_at != null) {
                 if (Hash::check($request->password, $passwordHash)) {
                     $user_id = $user->id;
+                    $user->available = 1; // Update the available attribute to 1
+                    $user->save();
                     $token = $user->createToken('token')->plainTextToken;
 
                     return response()->json([
@@ -142,7 +153,6 @@ class AuthController extends Controller
             } else {
                 return response()->json(["message" => "you have to verify your email"]);
             }
-
 
         } else if (Admin::where('email', $request->email)->first()) {
             $user = Admin::where('email', $request->email)->first();
@@ -189,6 +199,27 @@ class AuthController extends Controller
             return response()->json([
                 'error' => 'Invalid User',
             ]);
+        }
+    }
+
+    public function logout($type, $id)
+    {
+        if ($type == "patient") {
+            $user = Patient::find($id);
+            if ($user) {
+                $user->available = 0;
+                $user->save();
+                return response()->json(['message' => 'Patient logged out successfully']);
+            }
+        } else if ($type == "doctor") {
+            $user = Doctor::find($id);
+            if ($user) {
+                $user->available = 0;
+                $user->save();
+                return response()->json(['message' => 'Doctor logged out successfully']);
+            }
+        } else {
+            return response()->json(['message' => 'Invalid user']);
         }
     }
 }
