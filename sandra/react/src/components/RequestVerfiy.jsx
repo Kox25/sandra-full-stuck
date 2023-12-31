@@ -119,7 +119,7 @@ export default function RequestVerfiy() {
                                         </div>
                                         <div className='ml-[70px]'>
                                             <p>See File</p>
-                                            {doctor.Document && <img src={Filee} onClick={()=> {handleShowImage(doctor)}} className='file' alt='File Icon' onError={() => handleImageError(doctor.id)} />}
+                                            {doctor.Document && <img src={Filee} onClick={()=> {handleShowImage(doctor)}} className='file cursor-pointer' alt='File Icon' onError={() => handleImageError(doctor.id)} />}
                                             {!doctor.Document && <img src={Filee} className='file' alt='File Icon' />}
                                         </div>
                                         <div className='ml-[70px] flex buttons'>

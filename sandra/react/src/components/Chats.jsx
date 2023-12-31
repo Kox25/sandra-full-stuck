@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import doctorImg from '../assets/doctoricon.png';
 import avatar from '../../src/assets/avatar.png';
 import './Chats.css';
+import Swal from 'sweetalert2';
 
 
 const Chats = () => {
@@ -35,7 +36,7 @@ const Chats = () => {
         console.log('Invalid data received:', data);
       }
     } catch (error) {
-      console.log('Error fetching data:', error);
+      handleError();
     }
   };
 
@@ -61,21 +62,58 @@ const Chats = () => {
   };
 
   const handleDeleteChat = async (chatId) => {
-    const confirmDelete = window.confirm('Are you sure you want to delete this chat?');
+   
     setSelectedChatId(chatId);
     localStorage.setItem('delete-chat', chatId);
-    if (confirmDelete) {
       await axiosClient.post(`/delete-chat/${chatId}/${id}`);
-      alert('Chat deleted successfully.');
       // Refresh the chat list after deletion
       fetchData();
-    }
   };
 
   const handleTrashClick = (event, chatId) => {
     event.stopPropagation(); // Prevent event propagation to the parent elements
-    handleDeleteChat(chatId);
+    handleDeleteChatAlert(chatId);
   };
+
+  const handleError = () => {
+    Swal.fire(
+      {
+        'title': "OPPS...",
+        'icon': "error",
+        'text': "Something went wrong",
+      }
+    );
+  }
+
+  const handleCompleteSuccessfully = () => 
+    {
+        Swal.fire(
+            {
+                title : "Completed", 
+                text : "Thanks for your time admin sandra", 
+                icon : "success" , 
+
+            }
+        );
+    }
+
+    const handleDeleteChatAlert = (chatId) => {
+      Swal.fire({
+          title: "Do you want to delete this chat?",
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: "Delete",
+          denyButtonText: "No",
+      }).then((result) => {
+          if (result.isConfirmed) {
+              Swal.fire("Done!", "", "success");
+              handleDeleteChat(chatId);
+          } else if (result.isDenied) {
+              Swal.fire("Not sure!", "", "info");
+              handleDeleteChat(chatId)
+          }
+      });
+  }
 
   return (
     <div className='posforChat'>

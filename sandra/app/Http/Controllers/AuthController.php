@@ -57,24 +57,53 @@ class AuthController extends Controller
             $data = $request->validated();
             // Generate a verification token
             $verificationToken = Str::random(32);
+
+            // Check if the ID already exists in the Patient model
+            if (isset($data['id'])) {
+                $existingPatient = Patient::where('id', $data['id'])->first();
+                if ($existingPatient) {
+                    // Generate a new unique ID for the doctor
+                    $newId = $this->generateUniqueDoctorId();
+                    $data['id'] = $newId;
+                }
+            }
+
+            // Create the doctor with the provided or generated ID
             $user = Doctor::create([
                 'user_name' => $data['user_name'],
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
+                'id' => $data['id'] ?? null,
             ]);
+
             // Assign the verification token to the doctor's record
             $user->verification_token = $verificationToken;
             $user->save();
+
             Mail::to($user->email)->send(new DoctorVerificationEmail($user));
+
             $token = $user->createToken('token')->plainTextToken;
+
             return response([
                 'user' => $user,
                 'token' => $token,
-                'message' => ['Now you have to verify you email and enjoy in our services.', 200]
+                'message' => 'Now you have to verify your email and enjoy our services.',
             ]);
-        } catch (er) {
-            return response(['error' => ['error' => 'someting went wrong']], 0);
+        } catch (\Exception $e) {
+            return response(['error' => 'Something went wrong.']);
         }
+    }
+
+    //this function just for generate unique id for the doctor after check if the id exist in the patient model 
+    private function generateUniqueDoctorId()
+    {
+        $newId = mt_rand(1000000, 9999999); // Generate a random ID
+        $existingPatient = Patient::where('id', $newId)->first();
+        if ($existingPatient) {
+            // If the generated ID already exists in the Patient model, generate a new one recursively
+            return $this->generateUniqueDoctorId();
+        }
+        return $newId;
     }
 
     //this function to verify the doctor email before create the record of the doctor 

@@ -48,6 +48,7 @@ export default function Doctor() {
       DoctorLikes(doctorIds);
     } catch (error) {
       console.error('Error fetching doctors:', error);
+      handleError(); 
     }
   };
 
@@ -64,7 +65,9 @@ export default function Doctor() {
       // Update the like counts
       DoctorLikes([doctorId]);
     } catch (error) {
+
       console.error('Error adding like:', error);
+      handleError(); 
     }
   };
 
@@ -94,10 +97,9 @@ export default function Doctor() {
       setLikes(updatedLikes);
     } catch (error) {
       console.error('Error fetching Likes:', error);
+      handleError(); 
     }
   };
-
-
 
   const openChatWithDoctor = async (doctorId) => {
     try {
@@ -111,6 +113,7 @@ export default function Doctor() {
       navigate('/chats');
     } catch (error) {
       console.error('Error opening chat:', error);
+      handleError(); 
     }
   };
   // here section for load more doctor 
