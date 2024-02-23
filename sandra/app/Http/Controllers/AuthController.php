@@ -111,22 +111,29 @@ class AuthController extends Controller
     {
         // Find the doctor with the given verification token
         $doctor = Doctor::where('verification_token', $token)->first();
+
         // If the doctor is not found, return an error response
         if (!$doctor) {
             return response()->json(['error' => 'Invalid verification token.'], 400);
         }
+
         $doctor->email_verified_at = Carbon::parse($doctor->email_verified_at);
         $email_verified_at = $doctor->email_verified_at->toDateTimeString();
         $doctor->save();
+
         // Update the doctor's status as verified and clear the verification token
         $doctor->update([
             'email_verified_at' => $email_verified_at,
         ]);
-        // Return a success response
-        return response()->json([
-            'message' => 'Email verification successful , You can now log in.',
-            'email_verified_at' => $email_verified_at
-        ], 200);
+
+        // Pass data to the view
+        $data = [
+            'message' => 'Email verification successful. You can now log in.',
+            'email_verified_at' => $email_verified_at,
+        ];
+
+        // just to show the view 
+        return view('verification-success', $data);
     }
 
     // login function
