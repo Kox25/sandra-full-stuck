@@ -27,6 +27,10 @@ Route::post('/signup/doctor',[AuthController::class , 'signupDoctor']);
 Route::get('/verify-email/{token}', 
 [AuthController::class, 'verifyEmail'])
 ->name('verify.email');
+//this api for verfiy patient email before login 
+Route::get('/verify-email-patient/{token}', 
+[AuthController::class, 'verifyEmailUser'])
+->name('verify.email.user');
 //it's work 
 Route::post('/login',[AuthController::class , 'login']); 
 //it's work 
