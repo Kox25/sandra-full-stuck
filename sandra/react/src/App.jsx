@@ -26,7 +26,13 @@ import ChatMessages from './components/ChatMessages';
 import UploadDocument from './components/UploadDocument'; 
 import AdminDoctors from './components/AdminDoctors';
 import RequestVerfiy from './components/RequestVerfiy';
-
+import VideoCall from './components/VideoCall';
+import InfoForVideo from './components/InfoForVideo'; 
+import PostsSession from './components/PostsSession'; 
+import './components/translateCom.js'; 
+import SharePost from './components/SharePost';
+import SuggestVideo from './components/SuggestVideo';
+import SeePost from './components/SeePost';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -44,6 +50,13 @@ const router = createBrowserRouter(
             <Route path='/verfiy' element={<UploadDocument/>}/>
             <Route path='/control/doctors' element={<AdminDoctors/>}/>
             <Route path='/request/verfiy' element={<RequestVerfiy/>}/>
+            <Route path='/chat/video/call' element={<VideoCall/>}/>
+            <Route path='/intro/for/video/call' element={<InfoForVideo/>}/>
+            <Route path='/posts' element={<PostsSession/>}/>
+            <Route path='/share/post' element={<SharePost/>}/>
+            <Route path='/suggest/videos' element={<SuggestVideo/>}></Route>
+            <Route path='/see/post' element={<SeePost/>}/>
+          
         </Route>
     )
 )

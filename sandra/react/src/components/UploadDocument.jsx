@@ -96,8 +96,8 @@ export default function UploadDocument() {
   };
 
   return (
-    <div>
-      <div className='u w-screen flex mt-[10%]'>
+    <div> 
+      <div className='u w-screen flex mt-[240px]'>
         <div className='w-[10%]'></div>
         <span className='w-[30%] pl-3'>
           <div className='flex'>
@@ -124,7 +124,7 @@ export default function UploadDocument() {
               ref={fileInputRef}
               onChange={handleFileChange}
             />
-            {selectedFile ? (
+            {selectedFile ? ( 
               <div className='w-[200px]'>
                 {selectedFile.type.startsWith('image/') ? (
                   <img

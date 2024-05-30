@@ -8,6 +8,7 @@ import medalia from '../assets/medaliaicon.png';
 import axiosClient from '../axios';
 import love from '../assets/hand.png'
 import Swal from 'sweetalert2';
+import { useTranslation } from 'react-i18next';
 
 export default function Doctor() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Doctor() {
   const [visibleDoctors, setVisibleDoctors] = useState(8);
   const [likes, setLikes] = useState([]);
   const [likedDoctors, setLikedDoctors] = useState([]);
+  const {t} = useTranslation(); 
 
 
   useEffect(() => {
@@ -126,7 +128,7 @@ export default function Doctor() {
   return (
     <div >
       {/* Cards section */}
-      <div className='p-3 mt-5 ml-5'>
+      <div className='p-3 mt-[100px] ml-5'>
         <div className='max-h-[480px]' style={{ overflowX: 'hidden' }}>
           <div className='flex flex-wrap -mx-1 mt-0'>
             {doctors.slice(0, visibleDoctors).map((doctor) => (
@@ -156,20 +158,20 @@ export default function Doctor() {
                     <div className='font-bold text-black text-lg-center'>{doctor.user_name}</div>
                     {/* Doctor info */}
                     <div className='text-sm text-black max-h-32'>
-                      Email:{doctor.email}
+                      {t("email")}:{doctor.email}
                       <br />
-                      more Information
+                      {t("more")}
                     </div>
                   </div>
                   {/* Doctor Articles */}
                   <div className='m-2'>
-                    <button className='text-white botton px-2 py-1 rounded-md'>Articles</button>
+                    <button className='text-white botton px-2 py-1 rounded-md'>{t("Articals")}</button>
                   </div>
                   {/* for open chat */}
                   <div className='m-2'>
                     <a className='text-sm text-white botton px-2 py-1 rounded-md cursor-pointer'
                       onClick={() => openChatWithDoctor(doctor.id)}>
-                      Chatting With <FontAwesomeIcon icon={faMessage} className='pl-2 text-white' />
+                      {t("chattingwith")} <FontAwesomeIcon icon={faMessage} className='pl-2 text-white' />
                     </a>
                   </div>
                   {/* display it here  */}

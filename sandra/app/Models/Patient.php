@@ -34,6 +34,16 @@ class Patient extends Model implements Authenticatable
         return $this->hasMany(Chat::class , 'patiet_id'); 
     }
 
+    public function plikes():HasMany
+    {
+        return $this->hasMany(Plike::class , 'patient_id'); 
+    }
+
+    public function Usermeetings(): HasMany
+    {
+        return $this->hasMany(Usermeeting::class , 'patient_id'); 
+    }
+
     public function getAuthIdentifierName()
     {
         return 'id'; // with the name of the primary key column in the patients table
@@ -67,8 +77,3 @@ class Patient extends Model implements Authenticatable
 }
 
 
-
-
-
-
-?>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axiosClient from '../axios';
 import './ChatMessages.css';
 import avatar from '../../src/assets/avatar.png';
@@ -7,16 +7,23 @@ import send from '../assets/send2.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMessage } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom';
- 
+import videoCallIcon from '../assets/videoCallIcon.jpg';
+import { useTranslation } from 'react-i18next';
+
+
 
 export default function ChatMessages() {
 
- 
+
   const [messages, setMessages] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [newMessage, setNewMessage] = useState('');
   const navigate = useNavigate();
- 
+
+  const { t } = useTranslation();
+
+
+
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -40,6 +47,8 @@ export default function ChatMessages() {
       clearInterval(interval);
     }
   }, []);
+
+
 
   const backChats = () => {
     navigate('/chats');
@@ -83,7 +92,7 @@ export default function ChatMessages() {
 
 
   return (
-    <div className='posforMessages'>
+    <div className='posforMessages mt-[100px]'>
 
       <div className='w-screen flex'>
 
@@ -101,23 +110,41 @@ export default function ChatMessages() {
             <div className='items-center justify-center'>
               <h1 className='text-xl text-dark ml-3'>{localStorage.getItem('chatting-with')}</h1>
               {localStorage.getItem('user-type') === 'patient' ?
-                <p className='text-ml text-light ml-3'>Doctor</p>
+                <p className='text-ml text-light ml-3'>{t("doctor")}</p>
                 :
-                <p className='text-ml text-light ml-3'>User</p>
+                <p className='text-ml text-light ml-3'>{t("user")}</p>
               }
             </div>
             <FontAwesomeIcon icon={faMessage} className='mr-3 ml-auto text-light cursor-pointer' height={20} width={20} onClick={backChats}></FontAwesomeIcon>
+            {localStorage.getItem('user-type') == "doctor" ?
+              <img
+                src={videoCallIcon}
+                height={25}
+                width={25}
+                className={'mr-4 cursor-pointer'}
+                onClick={() => { navigate("/intro/for/video/call") }}
+
+              />
+              :
+              null
+            }
+
           </div>
 
-          <div className='h-[60%] w-full mt-1 overflow-y-scroll'>
+          <div className='h-[60%] w-full mt-1 overflow-y-scroll messagesSection'>
             <div className='h[370px] px-10 py-14 '>
               {/* here apply the sender Messages <div className='max-w-[45%] bg-secondary rounded-b-xl rounded-tr-xl p-4'></div>*/}
               {/* here apply the recever Messages <div className=' max-w-[45%] bg-light rounded-b-xl rounded-tl-xl ml-auto p-4'></div> */}
               <ul>
                 {messages.map((message) => (
-                  <li key={message.id}
-                    className={`max-w-[40%] p-[7px] mt-[8px] ${message.sender_id == localStorage.getItem('user-id')
-                      ? 'bg-secondary rounded-b-xl rounded-tr-xl text-white' : 'bg-light rounded-b-xl text-black rounded-tl-xl ml-auto'}`}>
+                  <li
+                    key={message.id}
+                    className={`max-w-[40%] p-[7px] mt-[8px] overflow-hidden h-[10%] min-h-[20px] ${message.sender_id == localStorage.getItem('user-id')
+                        ? 'rounded-b-xl rounded-tr-xl send'
+                        : 'rounded-b-xl rounded-tl-xl ml-auto rec'
+                      }`}
+                    style={{ wordWrap: 'break-word' }}
+                  >
                     {message.message}
                   </li>
                 ))}
@@ -130,7 +157,7 @@ export default function ChatMessages() {
             <input className='w-[75%] p-2 border-0 shadow-md input rounded-full  focus:ring-0 focus:border-0 outline-none'
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-              placeholder='Message' />
+              placeholder={t("messagehint")} />
             <img src={send} height={40} width={40} className='cursor-pointer ml-auto'
               onClick={sendMessage} />
           </div>

@@ -4,8 +4,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\DislikeController;
+use App\Http\Controllers\DlikeController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\PlikeController;
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DoctorVerfiyController; 
@@ -91,6 +94,34 @@ Route::get('/get/doctors' , [DoctorController::class ,'getAllDoctor']);
 
 
 
+
+
+
+
+
+//this section for the Posts 
+// on the test 
+Route::post('/posts', [PostController::class, 'store']);
+//on the test 
+Route::get('/posts/{id}', [PostController::class, 'show']); 
+//on the test 
+Route::get('/get/posts' , [PostController::class, 'getAllPosts']); 
+//on the test 
+Route::post('/add/post/like/{post_id}/{patient_id}' , [PlikeController::class , 'addPostLike']); 
+//on the test 
+Route::get('/get/post/like/{post_id}' , [PlikeController::class , 'showPostLikes']);  
+//on the test 
+Route::get('get/suggestion/post/{id}' , [PostController::class , 'suggestionPost']); 
+//on the test 
+Route::get('/delete/post/{id}', [PostController::class , 'deletePost']);
+//on the test 
+Route::get('doctor/post/{id}' , [PostController::class , 'getPostSharedByDoctor']); 
+//on the test 
+Route::post('/add/post/dlike/{post_id}/{patient_id}' , [DlikeController::class , 'addPostDlike']); 
+//on the test 
+Route::get('/get/post/dlike/{post_id}' , [DlikeController::class , 'showPostDlikes']); 
+//on the test 
+Route::get('/get/post/by/category/{category}' , [PostController::class , 'getPostsBySameCategory']); 
 
 
 

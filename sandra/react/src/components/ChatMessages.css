@@ -3,7 +3,7 @@
 {
   position: relative;
   top: 40px;
-}
+} 
 
 .posforMessages .messages-section
 {
@@ -12,7 +12,7 @@
   box-shadow: -5px 0px 10px -2px #01010149;
   height: 600px;
 }
-
+ 
 .posforMessages .input
 {
   border-radius: 10%;
@@ -30,7 +30,19 @@
   border-radius: 50%;
 }
 
+.rec
+{
+  background-color: rgb(120, 7, 7);
+  color: rgba(255, 255, 255, 1);
+  font-weight: bold;
+}
 
+.send
+{
+  background-color: bisque;
+  color: black;
+  font-weight: bold;
+}
 .posforMessages ::-webkit-scrollbar
 {
      width:0px;
@@ -53,3 +65,13 @@
 {
      background: burlywood;
 }
+
+.messagesSection
+{
+  border-radius: 0%;
+  background-image: url('../assets/back-chat.png');
+  background-size: cover; /* Make the background image cover the entire element */
+  background-position: center; /* Center the background image */
+  opacity: 0.9; /* Adjust the opacity of the background image */
+}
+

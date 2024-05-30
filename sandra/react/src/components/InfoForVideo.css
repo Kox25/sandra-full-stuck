@@ -1,0 +1,33 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.mainForm
+{
+    border: 3px solid #ffffff49;
+    background-color: #ffffff96;
+    box-shadow: -5px 10px 10px -2px #01010152;
+    height: 370px;
+    width: 530px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+}
+
+.doctorIcon
+{
+    border: 3px solid #ffffff49;
+    background-color: #ffffff96;
+    box-shadow: -5px 10px 10px -2px #01010152;
+}
+
+.btn
+{
+    background-color: blue;
+}

@@ -7,6 +7,8 @@ import doctorImg from '../assets/doctoricon.png';
 import avatar from '../../src/assets/avatar.png';
 import './Chats.css';
 import Swal from 'sweetalert2';
+import { useTranslation } from 'react-i18next';
+
 
 
 const Chats = () => {
@@ -15,6 +17,7 @@ const Chats = () => {
   const [chats, setChats] = useState([]);
   const [users, setUsers] = useState([]);
   const [chat, setChat] = useState(null);
+  const { t } = useTranslation()
 
   const [selectedChatId, setSelectedChatId] = useState(null);
   const id = localStorage.getItem('user-id');
@@ -47,27 +50,27 @@ const Chats = () => {
   const handleSelected = (chatId) => {
     setSelectedChatId(chatId);
     localStorage.setItem('selected-chat-id', chatId);
-  
+
     // Find the user associated with the selected chat
     const selectedChat = chats.find((chat) => chat.chat_id === chatId);
     const user = users.find((user) => user.id === selectedChat.patient_id || user.id === selectedChat.doctor_id);
-  
+
     // Store the user_name and user_type in localStorage
     if (user) {
       localStorage.setItem('chatting-with', user.user_name);
       localStorage.setItem('chatting-with-type', user.role === 0 ? 'patient' : 'doctor');
     }
-  
+
     navigate('/chat/messages');
   };
 
   const handleDeleteChat = async (chatId) => {
-   
+
     setSelectedChatId(chatId);
     localStorage.setItem('delete-chat', chatId);
-      await axiosClient.post(`/delete-chat/${chatId}/${id}`);
-      // Refresh the chat list after deletion
-      fetchData();
+    await axiosClient.post(`/delete-chat/${chatId}/${id}`);
+    // Refresh the chat list after deletion
+    fetchData();
   };
 
   const handleTrashClick = (event, chatId) => {
@@ -85,38 +88,37 @@ const Chats = () => {
     );
   }
 
-  const handleCompleteSuccessfully = () => 
-    {
-        Swal.fire(
-            {
-                title : "Completed", 
-                text : "Thanks for your time admin sandra", 
-                icon : "success" , 
+  const handleCompleteSuccessfully = () => {
+    Swal.fire(
+      {
+        title: "Completed",
+        text: "Thanks for your time admin sandra",
+        icon: "success",
 
-            }
-        );
-    }
+      }
+    );
+  }
 
-    const handleDeleteChatAlert = (chatId) => {
-      Swal.fire({
-          title: "Do you want to delete this chat?",
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: "Delete",
-          denyButtonText: "No",
-      }).then((result) => {
-          if (result.isConfirmed) {
-              Swal.fire("Done!", "", "success");
-              handleDeleteChat(chatId);
-          } else if (result.isDenied) {
-              Swal.fire("Not sure!", "", "info");
-              handleDeleteChat(chatId)
-          }
-      });
+  const handleDeleteChatAlert = (chatId) => {
+    Swal.fire({
+      title: "Do you want to delete this chat?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Delete",
+      denyButtonText: "No",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Done!", "", "success");
+        handleDeleteChat(chatId);
+      } else if (result.isDenied) {
+        Swal.fire("Not sure!", "", "info");
+        handleDeleteChat(chatId)
+      }
+    });
   }
 
   return (
-    <div className='posforChat'>
+    <div className='posforChat mt-[100px]'>
       <div className='w-screen flex'>
         {/*just for size screen and figures*/}
         <div className='w-[30%]'>
@@ -141,14 +143,14 @@ const Chats = () => {
             </div>
             <div className='ml-4'>
               <h3 className='text-2xl'>{User_Name}</h3>
-              <p className='text-m font-light text-white'>My Account</p>
+              <p className='text-m font-light text-white'>{t("myAccount")}</p>
             </div>
           </div>
 
           <hr className='my-2' />
 
           <div className='ml-10 mt-6'>
-            <div className='text-lg text-white '>Chats</div>
+            <div className='text-lg text-white '>{t("chats")}</div>
             <div >
               <ul className='chatList'>
                 {chats && chats.length > 0 ? (
@@ -158,7 +160,7 @@ const Chats = () => {
 
                     return (
                       <div className='items-center flex'>
-                        <li key={chat.id} className='flex items-center text-bg-secondary my-2 border border-secondary li rounded-full cursor-auto overflow-hidden' onClick={() => handleSelected(chat.chat_id)}>
+                        <li key={chat.id} className='flex items-center text-bg-secondary my-2 border border-secondary li rounded-full cursor-auto overflow-hidden h-[50px]' onClick={() => handleSelected(chat.chat_id)}>
                           {user && user.role === 0 ? (
                             <img src={avatar} alt='user' height={40} width={40} className='ml-3 border border-primary p-[2px] rounded-full ' />
                           ) : (
@@ -167,10 +169,10 @@ const Chats = () => {
 
                           <div className='ml-9 cursor-pointer w-[10%]'>
                             {user && <span className='text-white'>{user.user_name}</span>}
-                            {user.available == 1?
-                              <p className='text-sm paragraph'>online</p>
+                            {user.available == 1 ?
+                              <p className='text-sm paragraph'>{t("online")}</p>
                               :
-                              <p className='text-sm paragraph'>offline</p>
+                              <p className='text-sm paragraph'>{t("ofline")}</p>
                             }
                           </div>
                           {/* Render your chat component here */}
@@ -184,8 +186,10 @@ const Chats = () => {
                     );
                   })
                 ) : (
-                  <div className='flex items-center my-8'>
-                    <li className="text-primary text-xl pl-[40%]">No Chats</li>
+                  <div className='flex items-center mt-[60px] my-8 h-[3%]'>
+                    <li className="text-primary mt-[80px] text-xl pl-[40%]">
+                      <p className='mt-[50px]'>{t("nochats")}</p>
+                    </li>
                   </div>
                 )}
 

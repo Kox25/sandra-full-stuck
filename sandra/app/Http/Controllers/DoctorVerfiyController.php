@@ -24,11 +24,9 @@ class DoctorVerfiyController extends Controller
         ]);
         // Get the file from the request
         $file = $request->file('file');
-        // Generate a unique file name
+        
         $fileName = uniqid() . '.' . $file->getClientOriginalExtension();
-        // Save the file to a designated storage location
-        //$file->storeAs('app/uploads', $fileName);
-        //$file->storeAs('public/storage' , $fileName );
+        
         Storage::disk('public')->putFileAs('app/uploads' , $request->file , $fileName);   
         // Save the file information in the database
         $fileModel = new DoctorVerfiy();

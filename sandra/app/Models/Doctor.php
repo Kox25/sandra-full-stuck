@@ -45,6 +45,21 @@ class Doctor extends Model implements Authenticatable, MustVerifyEmailContract
         return $this->hasMany(Chat::class, 'doctor_id');
     }
 
+    public function post(): HasMany
+    {
+        return $this->hasMany(Post::class, 'doctor_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function Usermeetings(): HasMany
+    {
+        return $this->hasMany(Usermeeting::class, 'doctor_id');
+    }
+
     public function getAuthIdentifierName()
     {
         return 'id'; // Replace with the name of the primary key column in the patients table
@@ -129,7 +144,6 @@ class Doctor extends Model implements Authenticatable, MustVerifyEmailContract
     }
 
 
-
     public function getIsVerfiyAttribute()
     {
         $doctorVerfiy = DoctorVerfiy::where('doctor_id', $this->id)->first();
@@ -140,5 +154,7 @@ class Doctor extends Model implements Authenticatable, MustVerifyEmailContract
 
         return false;
     }
+
+    
 
 }
