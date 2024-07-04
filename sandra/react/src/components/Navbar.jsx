@@ -100,6 +100,7 @@ function Navbarr() {
                           width="30" />
                         <NavDropdown title={user} className="o">
                           <NavDropdown.Item onClick={Logout} className="o">{t("logout")}</NavDropdown.Item>
+                          <NavDropdown.Item onClick={() => navigate('/liked/post')} className="o">{t("savePost")}</NavDropdown.Item>
                           <label className='flex w-20 h-10 bg-gray-300 rounded-full ml-4'
                             onClick={() => setIsSelected(!isSelected)}>
                             {isSelected == false ?
@@ -110,6 +111,7 @@ function Navbarr() {
                                 onClick={() => { i18n.changeLanguage("en") }}><div className='font-mono text-bold text-[20px] mt-2 ml-[12px]'>AR</div></span>
                             }
                           </label>
+                          
                         </NavDropdown>
                       </div>
                     </Nav.Link>

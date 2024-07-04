@@ -162,7 +162,7 @@ function SeePost() {
                       <p className="font-mono text-md mt-3 ml-2">
                         {likes[pos.id] ? likes[pos.id] : 0}
                       </p>
-                      <img className="ml-5" src={report} width={30} height={1}
+                      <img className="ml-5 cursor-pointer" src={report} width={30} height={1}
                         onClick={() => handleDlikeButtonClick(pos.id)} />
                       <p className="font-mono text-md mt-3 ml-2">
                         {reports[pos.id] ? reports[pos.id] : 0}

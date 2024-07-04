@@ -38,7 +38,8 @@ i18n
                     email:"Email",
                     more:"More Information",
                     chattingwith:"Chatting With",
-                    posts:"Posts"
+                    posts:"Posts",
+                    savePost:"Saved Post",
 
 
                 }
@@ -72,7 +73,8 @@ i18n
                     email:"البريد الالكتروني",
                     more:"المزيد",
                     chattingwith:"تحدث الى",
-                    posts:"منشورات"
+                    posts:"منشورات",
+                    savePost:"منشورات اعجبتني",
 
                 }
             }

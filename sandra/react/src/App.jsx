@@ -33,6 +33,7 @@ import './components/translateCom.js';
 import SharePost from './components/SharePost';
 import SuggestVideo from './components/SuggestVideo';
 import SeePost from './components/SeePost';
+import LikedPost from './components/LikedPost';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -56,6 +57,7 @@ const router = createBrowserRouter(
             <Route path='/share/post' element={<SharePost/>}/>
             <Route path='/suggest/videos' element={<SuggestVideo/>}></Route>
             <Route path='/see/post' element={<SeePost/>}/>
+            <Route path='/liked/post' element={<LikedPost/>}></Route>
           
         </Route>
     )

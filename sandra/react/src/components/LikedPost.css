@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.P .vidddeo
+{
+    height: 300px;
+    box-shadow: -5px 0px 10px -2px #01010149;
+}
+
+.P .buttonnn
+{
+    box-shadow: -5px 0px 10px -2px #01010149;
+    color: #eee;
+    height: 40px;
+    width: 80px;
+    background-color: #b9f7eb;
+    background-image: linear-gradient(190deg, #b9f7eb8c 1%, #87bed28c 30%);
+    border-radius: 15%;
+    font-weight: 700;
+}
+
+.P .buttonnnn
+{
+    box-shadow: -5px 0px 10px -2px #01010149;
+    color: #eee;
+    height: 40px;
+    width: 140px;
+    background-color: #b9f7eb;
+    background-image: linear-gradient(190deg, #b9f7eb8c 1%, #87bed28c 30%);
+    border-radius: 15%;
+    font-weight: 700;
+}
+
+
+.P .onn:hover
+{
+    background-color: #eee;
+}

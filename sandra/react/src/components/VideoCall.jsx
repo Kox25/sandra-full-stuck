@@ -29,8 +29,8 @@ export default function VideoCall() {
       const roomID = getUrlParams().get('roomID') || randomID(5);
       let myMeeting = async (element) => {
      // generate Kit Token
-      const appID = 934626692;
-      const serverSecret = "c7eacd4c83cb2c07bbf2faebf9e572d3";
+      const appID = 840001775;
+      const serverSecret = "0ab8839e26c2d84b54b6151c2e344f04";
       const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID,  randomID(5),  randomID(5));
 
 
@@ -51,6 +51,7 @@ export default function VideoCall() {
               
           },
         ],
+        useFrontFacingCamera:VideoCall,
         scenario: {
           mode: ZegoUIKitPrebuilt.OneONoneCall,
         },
