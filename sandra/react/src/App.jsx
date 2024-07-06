@@ -34,6 +34,8 @@ import SharePost from './components/SharePost';
 import SuggestVideo from './components/SuggestVideo';
 import SeePost from './components/SeePost';
 import LikedPost from './components/LikedPost';
+import AdminPost from './components/AdminPost';
+
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -58,6 +60,8 @@ const router = createBrowserRouter(
             <Route path='/suggest/videos' element={<SuggestVideo/>}></Route>
             <Route path='/see/post' element={<SeePost/>}/>
             <Route path='/liked/post' element={<LikedPost/>}></Route>
+            <Route path='/admin/posts' element={<AdminPost/>}/>
+            
           
         </Route>
     )

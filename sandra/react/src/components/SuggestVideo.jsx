@@ -49,7 +49,7 @@ function SuggestVideo() {
     }
 
     return (
-        <div>
+        <div>   
             <div className='mt-[200px]'>
 
 

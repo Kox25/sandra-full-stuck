@@ -81,8 +81,6 @@ class PostController extends Controller
         ]);
     }
 
-
-
     public function deletePost($id)
     {
         $post = Post::find($id);
@@ -154,6 +152,10 @@ class PostController extends Controller
             'message' => 'Posts retrieved successfully',
         ]);
     }
+
+
+
+    
 
 
 }

@@ -16,7 +16,7 @@ class Post extends Model
         "category",
     ];
 
-    protected $appends = ['doctor_name' ];
+    protected $appends = ['doctor_name' , 'like' , 'report'];
     public function getDoctorNameAttribute()
     {
         // Assuming the foreign key column is 'doctor_id' in the posts table
@@ -50,6 +50,26 @@ class Post extends Model
         return $this->hasMany(Post::class , 'post_id'); 
     }
 
-    
+    public function getLikeAttribute ()
+    {
+        $like = Plike::where('post_id', $this->id)->count();
+        if($like)
+        {
+            return $like; 
+        }
+        else 
+        return 0;
+    }    
+
+    public function getReportAttribute () 
+    {
+        $dlike = Dlike::where('post_id', $this->id )->count();
+        if ($dlike)
+        {
+            return $dlike ; 
+        }
+        else 
+        return 0; 
+    }
 
 }

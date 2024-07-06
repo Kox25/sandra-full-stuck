@@ -72,6 +72,7 @@ function Navbarr() {
                     <Nav.Link href='/posts' className="l">{t("posts")}</Nav.Link>
                     <Nav.Link href="/user" className="l">{t("home")}</Nav.Link>
                     <Nav.Link href="/verfiy" className="l">{t("verfiy")}</Nav.Link>
+                    <Nav.Link href="/admin/posts" className='l'>{t("postManage")}</Nav.Link>
 
                   </>
                   :

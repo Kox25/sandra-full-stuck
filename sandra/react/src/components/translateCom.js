@@ -40,6 +40,7 @@ i18n
                     chattingwith:"Chatting With",
                     posts:"Posts",
                     savePost:"Saved Post",
+                    postManage:"Post Manage"
 
 
                 }
@@ -75,6 +76,8 @@ i18n
                     chattingwith:"تحدث الى",
                     posts:"منشورات",
                     savePost:"منشورات اعجبتني",
+                    postManage:"ادارة المنشورات",
+
 
                 }
             }

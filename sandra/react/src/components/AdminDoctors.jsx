@@ -18,7 +18,7 @@ export default function AdminDoctors() {
 
     useEffect(() => {
         fetchDoctors();
-    }, []);
+    }, []); 
 
     const fetchDoctors = async () => {
         try {

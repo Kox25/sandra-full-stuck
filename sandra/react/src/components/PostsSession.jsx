@@ -10,9 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 
-
-
-
 function PostsSession() {
 
 
@@ -50,13 +47,22 @@ function PostsSession() {
   }, [postDoctor]);
 
   const fetchData = async () => {
-    try {
-      const response = await axiosClient.get('/get/posts');
-      const data = response.data;
-      setPosts(data.posts);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-    }
+    // try {
+    //   const response = await axiosClient.get('/get/posts');
+    //   const data = response.data;
+    //   setPosts(data.posts);
+    // } catch (error) {
+    //   console.error('Error fetching posts:', error);
+    // }
+    fetch('http://localhost:5000/api/get/posts')
+      .then(response => response.json())
+      .then(data => {
+        const sortedPosts = data.posts;
+        setPosts(sortedPosts);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   };
 
   const deletePost = async (postId) => {

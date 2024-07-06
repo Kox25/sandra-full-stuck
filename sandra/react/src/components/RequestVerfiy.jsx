@@ -44,7 +44,7 @@ export default function RequestVerfiy() {
                 text : "Thanks for your time admin sandra", 
                 icon : "success" , 
 
-            }
+            } 
         );
     }
 
