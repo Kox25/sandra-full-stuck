@@ -23,7 +23,7 @@ function PostsSession() {
   const completePath = 'http://localhost:8000/storage/';
   const [postDoctor, setPostDoctor] = useState([]);
   const [reports, setReports] = useState({});
-  
+
 
   const fetchReportCount = async (post_id) => {
     try {
@@ -47,22 +47,27 @@ function PostsSession() {
   }, [postDoctor]);
 
   const fetchData = async () => {
-    // try {
-    //   const response = await axiosClient.get('/get/posts');
-    //   const data = response.data;
-    //   setPosts(data.posts);
-    // } catch (error) {
-    //   console.error('Error fetching posts:', error);
-    // }
-    fetch('http://localhost:5000/api/get/posts')
-      .then(response => response.json())
-      .then(data => {
-        const sortedPosts = data.posts;
-        setPosts(sortedPosts);
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
+    if (localStorage.getItem('user-type') == 'doctor') {
+      try {
+        const response = await axiosClient.get('/get/posts');
+        const data = response.data;
+        setPosts(data.posts);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    }
+    else {
+      fetch('http://localhost:5000/api/get/posts')
+        .then(response => response.json())
+        .then(data => {
+          const sortedPosts = data.posts;
+          setPosts(sortedPosts);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+
+    }
   };
 
   const deletePost = async (postId) => {
@@ -169,7 +174,7 @@ function PostsSession() {
   };
 
 
-  
+
 
   const handleLikeButtonClick = async (post_id) => {
     try {
@@ -268,9 +273,9 @@ function PostsSession() {
                 <div>
                   <div className='cont3 mt-3 ml-3'>
                     {post.path != null ? (
-                      <video controls 
-                      src={post.path}
-                       className='video' />
+                      <video controls
+                        src={post.path}
+                        className='video' />
                     ) : (
                       <img src={novid} alt='Post' className='image mr-auto ml-auto mb-auto mt-[50px]' />
                     )}
