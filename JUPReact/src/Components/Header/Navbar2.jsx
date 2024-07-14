@@ -51,7 +51,6 @@ function Navbarr() {
     }
     let id = localStorage.getItem("user-id");
     let Type = localStorage.getItem("user-type");
-    let user = JSON.parse(localStorage.getItem("user-info"));
 
     let Secretary = JSON.parse(localStorage.getItem("user-Secretary"));
     console.log(Secretary);

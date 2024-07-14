@@ -100,7 +100,7 @@ function PatientProfile() {
                     editedNotes={setEditedNotes}
                 />
             </div>
-            {PatientInfos && Notes && (
+            {(
                 <div
                     style={{
                         position: "absolute",
