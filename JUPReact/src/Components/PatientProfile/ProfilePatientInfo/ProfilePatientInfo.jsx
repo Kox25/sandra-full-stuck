@@ -14,7 +14,7 @@ import PayForm from "../../Forms/PayForm/PayForm";
 import BanksDetails from "../../BanksDetails/BanksDetails";
 import PatientInfo from "../../PatientInfo/PatientInfo";
 
-const ProfilePatientInfo = ({ id, downloadPDF, setTopPatientInfo, notesSummarization, summarizationLoad }) => {
+const ProfilePatientInfo = ({ id, downloadPDF, setTopPatientInfo, setNotesSummarization }) => {
     const [patientInfo, setPatientInfo] = useState();
     const [bankModalOpen, setBankModalOpen] = useState(false);
     const [countt, setCountt] = useState(0);
@@ -92,6 +92,7 @@ const ProfilePatientInfo = ({ id, downloadPDF, setTopPatientInfo, notesSummariza
                     if(response.data.Info){
 
                         setPatientInfo(response.data.Info);
+                        setNotesSummarization(response.data.Info?.NotesSummarization)
                         setTopPatientInfo(response.data.Info);
                         setFormData(response.data.Info.data);
                     }
@@ -292,7 +293,7 @@ const ProfilePatientInfo = ({ id, downloadPDF, setTopPatientInfo, notesSummariza
                 <div className="secondaryInfo">
                     <div className="title">Notes Summarization :</div>
                     <div className="data Education">
-                        {summarizationLoad ? <CircularLoading /> : notesSummarization}
+                        {patientInfo?.NotesSummarization??"none"}
                     </div>
                 </div>
                 {bankModalOpen &&

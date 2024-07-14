@@ -51,7 +51,7 @@ function Navbarr() {
     }
     let id = localStorage.getItem("user-id");
     let Type = localStorage.getItem("user-type");
-
+    let user=JSON.parse(localStorage.getItem("user-info"))
     let Secretary = JSON.parse(localStorage.getItem("user-Secretary"));
     console.log(Secretary);
 
@@ -132,14 +132,15 @@ function Navbarr() {
                                             </Nav.Link>
                                         </>
                                     ) : null}
+                                    {Type=="doctor" && user?.isVerfiy==0 ? null:
                                     <Nav.Link
                                         href={`/appointments`}
                                         // href={`/newAppointment/${Type=="secretary"?user.doctorID:id}`}
                                         className="l"
                                     >
                                         {t("NavbarAppointments")}
-                                    </Nav.Link>
-                                    {Type != "admin" && Type != "patient" ? (
+                                    </Nav.Link>}
+                                    {Type != "admin" && Type != "patient"  ? Type=="doctor" && user?.isVerfiy==0?null: (
                                         <>
                                             <Nav.Link
                                                 href="/Schedule"
@@ -269,7 +270,7 @@ function Navbarr() {
                                                     >
                                                         {t("NavbarProfile")}
                                                     </NavDropdown.Item>
-                                                    {!Secretary && (
+                                                    {!Secretary && user?.isVerfiy==1 (
                                                         <NavDropdown.Item
                                                             href={`/AddSecretary`}
                                                             className="o"
